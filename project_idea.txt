@@ -1,0 +1,50 @@
+Bhatbhateni Store
+---------------------
+Stores
+	->Staffs
+Suppliers
+	->Brand
+Products quantity
+	-> color,size,unit
+----------------------------
+Makhan Brand 5 KG,10 KG, 50 KG
+white, black
+product options
+Product Prices
+---------------------
+Product | store name | store name | store name | store name |
+-------------------------------------------------------------
+Samsung	 Bhatbhateni	Koteshor   Kalanli	Maharajgung
+-------------------------------------------------------------
+		50	50		50	50
+-------------------------------------------------------------
+		30	10		20	45
+-------------------------------------------------------------
+Store Transfer
+
+------------------------------------------------------------
+Purchase
+------------------------------------------------------------
+supplier| Purchase Order | 
+-----------------------------------------------------------
+	Purchase Order Details
+		Item quantity item options Deadline
+------------------------------------------------------------
+Purchase
+Purchase Details
+Purchase Return
+-----------------------------------------------------------
+Sales/Invoice
+SalesDetail
+SalesReturn
+-----------------------------------------------------------
+Marketing
+Social Media Promotion
+Email Campaign
+Event Promotion
+-----------------------------------------------------------
+-----------------------------------------------------------
+ 
+
+			
+
