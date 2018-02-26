@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\PurchaseRequest;
+use App\PurchaseOrder;
 use Illuminate\Http\Request;
 
-class PurchaseRequestController extends Controller
+class PurchaseOrderController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class PurchaseRequestController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\PurchaseRequest  $purchaseRequest
+     * @param  \App\PurchaseOrder  $purchaseOrder
      * @return \Illuminate\Http\Response
      */
-    public function show(PurchaseRequest $purchaseRequest)
+    public function show(PurchaseOrder $purchaseOrder)
     {
         //
     }
@@ -52,10 +52,10 @@ class PurchaseRequestController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\PurchaseRequest  $purchaseRequest
+     * @param  \App\PurchaseOrder  $purchaseOrder
      * @return \Illuminate\Http\Response
      */
-    public function edit(PurchaseRequest $purchaseRequest)
+    public function edit(PurchaseOrder $purchaseOrder)
     {
         //
     }
@@ -64,10 +64,10 @@ class PurchaseRequestController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\PurchaseRequest  $purchaseRequest
+     * @param  \App\PurchaseOrder  $purchaseOrder
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, PurchaseRequest $purchaseRequest)
+    public function update(Request $request, PurchaseOrder $purchaseOrder)
     {
         //
     }
@@ -75,10 +75,10 @@ class PurchaseRequestController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\PurchaseRequest  $purchaseRequest
+     * @param  \App\PurchaseOrder  $purchaseOrder
      * @return \Illuminate\Http\Response
      */
-    public function destroy(PurchaseRequest $purchaseRequest)
+    public function destroy(PurchaseOrder $purchaseOrder)
     {
         //
     }

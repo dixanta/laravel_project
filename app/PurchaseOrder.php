@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class PurchaseRequest extends Model
+class PurchaseOrder extends Model
 {
     //
 }

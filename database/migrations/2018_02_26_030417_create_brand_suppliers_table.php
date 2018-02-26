@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePurchaseRequestDetailsTable extends Migration
+class CreateBrandSuppliersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreatePurchaseRequestDetailsTable extends Migration
      */
     public function up()
     {
-        Schema::create('purchase_request_details', function (Blueprint $table) {
+        Schema::create('brand_suppliers', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
         });
@@ -26,6 +26,6 @@ class CreatePurchaseRequestDetailsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('purchase_request_details');
+        Schema::dropIfExists('brand_suppliers');
     }
 }
