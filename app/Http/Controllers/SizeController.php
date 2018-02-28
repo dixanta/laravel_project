@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Size;
+use App\Http\Requests\SizeFormRequest;
 use Illuminate\Http\Request;
 
 class SizeController extends Controller
@@ -27,7 +28,9 @@ class SizeController extends Controller
      */
     public function create()
     {
-        //
+        return view('size.create',[
+            'page_title'=>'Add Size'
+        ]);
     }
 
     /**
@@ -36,9 +39,14 @@ class SizeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SizeFormRequest $request)
     {
-        //
+        $size=new Size();
+        $size->name=$request->input('name');
+        $size->code=$request->input('code');
+        $size->status=$request->has('status');
+        $size->save();
+        return redirect('/sizes');
     }
 
     /**
