@@ -14,7 +14,10 @@ class SizeController extends Controller
      */
     public function index()
     {
-        //
+        return view('size.index',[
+            'page_title'=>'Size',
+            'sizes'=>Size::all()
+        ]);
     }
 
     /**
