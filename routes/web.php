@@ -22,4 +22,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/dashboard','DashboardController@index');
 Route::resource('/sizes','SizeController');
 Route::resource('/categories','CategoryController');
+
 Route::resource('/suppliers','SupplierController');
