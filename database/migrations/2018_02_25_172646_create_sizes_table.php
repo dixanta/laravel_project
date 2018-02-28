@@ -15,7 +15,12 @@ class CreateSizesTable extends Migration
     {
         Schema::create('mst_sizes', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamps();
+            $table->string('name');
+            $table->string('code');
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->nullable();
+            $table->boolean('delete_flag')->default(false);
+            $table->boolean('status')->default(false);
         });
     }
 

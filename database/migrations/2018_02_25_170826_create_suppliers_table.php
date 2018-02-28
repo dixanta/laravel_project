@@ -15,7 +15,16 @@ class CreateSuppliersTable extends Migration
     {
         Schema::create('suppliers', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamps();
+            $table->string('name');
+            $table->string('logo');
+            $table->string('email')->unique();
+            $table->string('contact_no');
+            $table->string('address');
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->nullable();
+            $table->boolean('delete_flag')->default(false);
+            $table->boolean('status')->default(false);
+            
         });
     }
 

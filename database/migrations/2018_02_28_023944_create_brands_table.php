@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateStoresTable extends Migration
+class CreateBrandsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,14 @@ class CreateStoresTable extends Migration
      */
     public function up()
     {
-        Schema::create('stores', function (Blueprint $table) {
+        Schema::create('brands', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('address');
-            $table->string('contact_no');
-            $table->string('email')->unique();
+            $table->string('code');
+            $table->string('logo');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->nullable();
+            $table->boolean('delete_flag')->default(false);
             $table->boolean('status')->default(false);
         });
     }
@@ -32,6 +32,6 @@ class CreateStoresTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('stores');
+        Schema::dropIfExists('brands');
     }
 }

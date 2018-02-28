@@ -15,7 +15,16 @@ class CreateStaffsTable extends Migration
     {
         Schema::create('staffs', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamps();
+            $table->string('first_name');
+            $table->string('last_name');
+            $table->string('contact_no');
+            $table->string('email')->unique();
+            $table->string('photo')->nullable();
+            $table->string('address');
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->nullable();
+            $table->boolean('delete_flag')->default(false);
+            $table->boolean('status')->default(false);
         });
     }
 
