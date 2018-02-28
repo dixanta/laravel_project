@@ -9,17 +9,25 @@
             <div class="box-header">
               <h3 class="box-title">
                 <a href="{{url('sizes/create')}}" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span></a>
+                <a href="{{url('sizes')}}" class="btn btn-danger">Clear</a>
               </h3>
-
+              
               <div class="box-tools">
+              {!!Form::open(['url'=>'sizes','method'=>'GET'])!!}
                 <div class="input-group input-group-sm" style="width: 150px;">
-                  <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
+                    
+                  <input type="text" name="q" class="form-control pull-right" placeholder="Search">
 
                   <div class="input-group-btn">
                     <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
                   </div>
+                  
+                  {{Form::token()}}
+                  
                 </div>
+                {{Form::close()}}
               </div>
+              
             </div>
             <!-- /.box-header -->
             <div class="box-body table-responsive no-padding">

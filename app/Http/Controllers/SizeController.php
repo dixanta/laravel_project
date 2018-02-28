@@ -13,11 +13,20 @@ class SizeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $sizes=null;
+        if($request->has('q')){
+            $param='%'.$request->input('q').'%';
+            $sizes=Size::where('name','like',$param)
+                ->orWhere('code','like',$param)->get();
+        }else{
+            $sizes=Size::all();
+        }
+        
         return view('size.index',[
             'page_title'=>'Size',
-            'sizes'=>Size::all()
+            'sizes'=>$sizes
         ]);
     }
 
@@ -66,9 +75,12 @@ class SizeController extends Controller
      * @param  \App\Size  $size
      * @return \Illuminate\Http\Response
      */
-    public function edit(Size $size)
+    public function edit($id)
     {
-        //
+        return view('size.edit',[
+            'page_title'=>'Edit Size',
+             'size'=>Size::findOrFail($id)
+        ]);
     }
 
     /**
@@ -78,9 +90,13 @@ class SizeController extends Controller
      * @param  \App\Size  $size
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Size $size)
+    public function update(SizeFormRequest $request, Size $size)
     {
-        //
+        $size->name=$request->input('name');
+        $size->code=$request->input('code');
+        $size->status=$request->has('status');
+        $size->save();
+        return redirect('/sizes');
     }
 
     /**
@@ -91,6 +107,8 @@ class SizeController extends Controller
      */
     public function destroy(Size $size)
     {
-        //
+        $size->delete_flag=1;
+        $size->save();
+        return redirect('/sizes');
     }
 }
