@@ -98,7 +98,17 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        
+        if($request->hasFile('logo')){
+            $category->logo=$request->file('logo')->store('public/categories');
+        }
+        
+        $category->name=$request->input('name');
+        $category->description=$request->input('name');
+        $category->parent_id=0;
+        $category->status=$request->has('status');
+        $category->save();
+        return redirect('/categories');
     }
 
     /**
