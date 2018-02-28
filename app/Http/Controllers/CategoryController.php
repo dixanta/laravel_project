@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Http\Requests\CategoryFormRequest;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -12,9 +13,21 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $categories=null;
+        if($request->has('q')){
+            $param='%'.$request->input('q').'%';
+            $categories=Category::where('name','like',$param)
+                ->orWhere('description','like',$param)->get();
+        }else{
+            $categories=Category::all();
+        }
+        
+        return view('category.index',[
+            'page_title'=>'Categories',
+            'categories'=>$categories
+        ]);
     }
 
     /**
@@ -24,7 +37,9 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('category.create',[
+            'page_title'=>'Add Category'
+        ]);
     }
 
     /**
@@ -33,9 +48,20 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CategoryFormRequest $request)
     {
-        //
+        $logo='na.jpg';
+        if($request->hasFile('logo')){
+            $logo=$request->file('logo')->store('public/categories');
+        }
+        $category=new Category();
+        $category->name=$request->input('name');
+        $category->description=$request->input('name');
+        $category->logo=$logo;
+        $category->parent_id=0;
+        $category->status=$request->has('status');
+        $category->save();
+        return redirect('/categories');
     }
 
     /**
@@ -80,6 +106,8 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete_flag=1;
+        $category->save();
+        return redirect('/categories');
     }
 }
