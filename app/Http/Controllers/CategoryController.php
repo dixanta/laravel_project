@@ -81,9 +81,12 @@ class CategoryController extends Controller
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
+    public function edit($id)
     {
-        //
+        return view('category.edit',[
+            'page_title'=>'Edit Category',
+            'category'=>Category::findOrFail($id)
+        ]);
     }
 
     /**
