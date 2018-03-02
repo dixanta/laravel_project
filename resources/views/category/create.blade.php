@@ -1,7 +1,8 @@
 @extends('layouts.master')
-@section('title','Add Size')
+@section('title','Add Category')
 
 @section('content')
+@include('partials.error')
 <div class="box box-primary">
             <div class="box-header with-border">
               <h3 class="box-title"></h3>

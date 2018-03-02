@@ -122,4 +122,8 @@ class StoreController extends Controller
         $store->save();
         return redirect('/stores');
     }
+
+    public function changeStatus(Request $request){
+        return $this->updateStatus($request,Store::class);
+    }
 }

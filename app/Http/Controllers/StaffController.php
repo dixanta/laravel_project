@@ -130,17 +130,6 @@ class StaffController extends Controller
     }
 
     public function changeStatus(Request $request){
-        $success=false;
-        if($request->has('id')){
-            $staff=Staff::find($request->input('id'));
-            if(!is_null($staff)){
-                $staff->status=(!$staff->status);
-                $staff->save();
-                $success=true;
-            }
-        }
-        return [
-            'success'=>$success
-        ];
+        return $this->updateStatus($request,Staff::class);
     }
 }

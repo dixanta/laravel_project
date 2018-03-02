@@ -117,17 +117,6 @@ class SizeController extends \App\Http\Controllers\Controller
      * 
      */
     public function changeStatus(Request $request){
-        $success=false;
-        if($request->has('id')){
-            $size=Size::find($request->input('id'));
-            if(!is_null($size)){
-                $size->status=(!$size->status);
-                $size->save();
-                $success=true;
-            }
-        }
-        return [
-            'success'=>$success
-        ];
+        return $this->updateStatus($request,Size::class);
     }
 }

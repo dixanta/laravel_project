@@ -113,17 +113,6 @@ class UnitController extends \App\Http\Controllers\Controller
     }
 
     public function changeStatus(Request $request){
-        $success=false;
-        if($request->has('id')){
-            $unit=Unit::find($request->input('id'));
-            if(!is_null($unit)){
-                $unit->status=(!$unit->status);
-                $unit->save();
-                $success=true;
-            }
-        }
-        return [
-            'success'=>$success
-        ];
+        return $this->updateStatus($request,Unit::class);
     }
 }

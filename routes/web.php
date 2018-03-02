@@ -33,4 +33,5 @@ Route::post('/categories/status','CategoryController@changeStatus');
 Route::resource('/staffs','StaffController');
 Route::post('/staffs/status','StaffController@changeStatus');
 Route::resource('/stores','StoreController');
+Route::post('/stores/status','StoreController@changeStatus');
 Route::resource('/suppliers','SupplierController');

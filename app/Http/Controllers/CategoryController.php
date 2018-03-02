@@ -125,17 +125,6 @@ class CategoryController extends Controller
     }
 
     public function changeStatus(Request $request){
-        $success=false;
-        if($request->has('id')){
-            $category=Category::find($request->input('id'));
-            if(!is_null($category)){
-                $category->status=(!$category->status);
-                $category->save();
-                $success=true;
-            }
-        }
-        return [
-            'success'=>$success
-        ];
+        return $this->updateStatus($request,Category::class);
     }
 }
