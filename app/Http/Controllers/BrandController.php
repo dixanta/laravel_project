@@ -19,7 +19,7 @@ class BrandController extends Controller
         if($request->has('q')){
             $param='%'.$request->input('q').'%';
             $brands=Brand::where('name','like',$param)
-                ->orWhere('description','like',$param)->get();
+                ->orWhere('code','like',$param)->get();
         }else{
             $brands=Brand::all();
         }
@@ -56,9 +56,8 @@ class BrandController extends Controller
         }
         $brand=new Brand();
         $brand->name=$request->input('name');
-        $brand->description=$request->input('name');
+        $brand->code=$request->input('code');
         $brand->logo=$logo;
-        $brand->parent_id=0;
         $brand->status=$request->has('status');
         $brand->save();
         return redirect('/brands');
@@ -104,7 +103,7 @@ class BrandController extends Controller
         }
         
         $brand->name=$request->input('name');
-        $brand->description=$request->input('name');
+        $brand->code=$request->input('name');
         $brand->parent_id=0;
         $brand->status=$request->has('status');
         $brand->save();

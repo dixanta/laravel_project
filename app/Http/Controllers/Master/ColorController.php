@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Master;
 
+use App\Http\Controllers\Controller;
 use App\Color;
 use App\Http\Requests\ColorFormRequest;
 use Illuminate\Http\Request;
 
-class ColorController extends \App\Http\Controllers\Controller
+class ColorController extends Controller
 {
     /**
      * Display a listing of the resource.

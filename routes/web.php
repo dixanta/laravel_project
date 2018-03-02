@@ -26,5 +26,6 @@ Route::resource('/units','Master\UnitController');
 
 Route::resource('/brands','BrandController');
 Route::resource('/categories','CategoryController');
+Route::resource('/stores','StoreController');
 
 Route::resource('/suppliers','SupplierController');
