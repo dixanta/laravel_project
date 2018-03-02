@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title','Edit Brand')
+@section('title','Edit Store')
 
 @section('content')
 <div class="box box-primary">

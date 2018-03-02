@@ -111,4 +111,19 @@ class UnitController extends \App\Http\Controllers\Controller
         $unit->save();
         return redirect('/units');
     }
+
+    public function changeStatus(Request $request){
+        $success=false;
+        if($request->has('id')){
+            $unit=Unit::find($request->input('id'));
+            if(!is_null($unit)){
+                $unit->status=(!$unit->status);
+                $unit->save();
+                $success=true;
+            }
+        }
+        return [
+            'success'=>$success
+        ];
+    }
 }

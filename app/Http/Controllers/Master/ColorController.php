@@ -112,4 +112,19 @@ class ColorController extends Controller
         $color->save();
         return redirect('/colors');
     }
+
+    public function changeStatus(Request $request){
+        $success=false;
+        if($request->has('id')){
+            $color=Color::find($request->input('id'));
+            if(!is_null($color)){
+                $color->status=(!$color->status);
+                $color->save();
+                $success=true;
+            }
+        }
+        return [
+            'success'=>$success
+        ];
+    }
 }

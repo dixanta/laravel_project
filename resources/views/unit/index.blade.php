@@ -44,11 +44,11 @@
                   <td>{{$unit->id}}</td>
                   <td>{{$unit->name}}</td>
                   <td>{{$unit->code}}</td>
-                  <td>
+                  <td data-id="{{$unit->id}}" style="cursor:pointer">
                     @if($unit->status)
-                    <span class="label label-success">Active</span>
+                    <span class="label label-success status">Active</span>
                     @else
-                    <span class="label label-danger">Inactive</span>
+                    <span class="label label-danger status">Inactive</span>
                     @endif
                   </td>
                   <td>
@@ -70,4 +70,24 @@
             <!-- /.box-body -->
           </div>
 
+          <script>
+  $(function(){
+    
+    $(".status").on('click',function(){
+      var $this=$(this);
+      var $id=$this.parent().attr('data-id');
+      $.post('{{url("units/status")}}',{
+        'id':$id,
+        '_token':'{{csrf_token()}}'
+      },function(res){
+        if(res.success){
+          changeStatus($this);
+        }else{
+          alert('Error Occured');
+        }
+      },'json');
+      
+    });
+  });
+</script>
 @endsection

@@ -13,7 +13,7 @@ class SupplierFormRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,10 @@ class SupplierFormRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name'=>'required',
+            'email'=>'required|email',
+            'contact_no'=>'required',
+            'address'=>'required'
         ];
     }
 }

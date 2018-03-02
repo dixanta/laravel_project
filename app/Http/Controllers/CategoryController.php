@@ -123,4 +123,19 @@ class CategoryController extends Controller
         $category->save();
         return redirect('/categories');
     }
+
+    public function changeStatus(Request $request){
+        $success=false;
+        if($request->has('id')){
+            $category=Category::find($request->input('id'));
+            if(!is_null($category)){
+                $category->status=(!$category->status);
+                $category->save();
+                $success=true;
+            }
+        }
+        return [
+            'success'=>$success
+        ];
+    }
 }

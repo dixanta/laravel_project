@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('page_title','Categories')
+@section('page_title','Suppliers')
 
 @section('content')
 
@@ -8,12 +8,12 @@
           <div class="box">
             <div class="box-header">
               <h3 class="box-title">
-                <a href="{{url('categories/create')}}" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span></a>
-                <a href="{{url('categories')}}" class="btn btn-danger">Clear</a>
+                <a href="{{url('suppliers/create')}}" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span></a>
+                <a href="{{url('suppliers')}}" class="btn btn-danger">Clear</a>
               </h3>
               
               <div class="box-tools">
-              {!!Form::open(['url'=>'categories','method'=>'GET'])!!}
+              {!!Form::open(['url'=>'suppliers','method'=>'GET'])!!}
                 <div class="input-group input-group-sm" style="width: 150px;">
                     
                   <input type="text" name="q" class="form-control pull-right" placeholder="Search">
@@ -35,17 +35,21 @@
                 <tr>
                   <th>ID</th>
                   <th>Name</th>
+                  <th>Contact No</th>
+                  <th>Address</th>
                   <th>Added Date</th>
                   <th>Status</th>
                   <th>Action</th>
                 </tr>
-                @foreach($categories as $category)
+                @foreach($suppliers as $supplier)
                 <tr>
-                  <td>{{$category->id}}</td>
-                  <td>{{$category->name}}</td>
-                  <td>{{$category->created_at}}</td>
+                  <td>{{$supplier->id}}</td>
+                  <td>{{$supplier->name}}</td>
+                  <td>{{$supplier->contact_no}}</td>
+                  <td>{{$supplier->address}}</td>
+                  <td>{{$supplier->created_at}}</td>
                   <td>
-                    @if($category->status)
+                    @if($supplier->status)
                     <span class="label label-success">Active</span>
                     @else
                     <span class="label label-danger">Inactive</span>
@@ -53,8 +57,8 @@
                   </td>
                   <td>
                     
-                    {!!Form::open(['url'=>'categories/'.$category->id,'method'=>'DELETE'])!!}
-                    <a href="{{url('categories/'.$category->id .'/edit')}}" class="btn btn-success"><span class="glyphicon glyphicon-pencil"></span></a>
+                    {!!Form::open(['url'=>'suppliers/'.$supplier->id,'method'=>'DELETE'])!!}
+                    <a href="{{url('suppliers/'.$supplier->id .'/edit')}}" class="btn btn-success"><span class="glyphicon glyphicon-pencil"></span></a>
                         <button type="submit" class="btn btn-danger">
                             <span class="glyphicon glyphicon-trash"/>
                         </button>
