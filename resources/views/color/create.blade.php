@@ -1,7 +1,8 @@
 @extends('layouts.master')
 @section('title','Add Color')
-
 @section('content')
+<!-- Bootstrap Color Picker -->
+<link rel="stylesheet" href="{{asset('bower_components/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css')}}">
 
 @if($errors->any())
 <div class="alert alert-danger alert-dismissible">
@@ -30,7 +31,7 @@
                 </div>
                 <div class="form-group">
                   <label for="code">Code</label>
-                  <input type="text" name="code" class="form-control"/>
+                  <input type="text" id="color-code" name="code" class="form-control"/>
                 </div>
                 <div class="checkbox">
                   <label>
@@ -46,5 +47,12 @@
               </div>
               {{Form::token()}}
             {{Form::close()}}
-          </div
+          </div>
+<!-- bootstrap color picker -->
+<script src="{{asset('bower_components/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js')}}"></script>
+<script>
+$(function(){
+  $('#color-code').colorpicker();
+})
+</script>
 @endsection
