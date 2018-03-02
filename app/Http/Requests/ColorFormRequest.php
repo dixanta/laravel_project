@@ -25,7 +25,7 @@ class ColorFormRequest extends FormRequest
     {
         return [
             'name'=>'required',
-            'code'=>'required|min:3'
+            'code'=>'required|max:3'
         ];
     }
 }
