@@ -35,7 +35,19 @@
                 </div>
                 <div class="form-group">
                   <label for="file">Logo</label>
-                  <input type="file" name="logo"/>
+                  <input type="file" name="photo"/>
+
+                  <p class="help-block">Upload Allowed (jpg,gif,png)</p>
+                </div>
+
+                <div class="form-group">
+                  <label for="store">Store</label>
+                  <select name="store" class="form-control">
+                    <option value="">Select Store</option>
+                    @foreach($stores as $store)
+                    <option value="{{$store->id}}">{{$store->name}}</option>
+                    @endforeach
+                  </select>
 
                   <p class="help-block">Upload Allowed (jpg,gif,png)</p>
                 </div>                    

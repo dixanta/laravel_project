@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Staff;
+use App\Store;
 use App\Http\Requests\StaffFormRequest;
 use Illuminate\Http\Request;
 
@@ -18,7 +19,8 @@ class StaffController extends Controller
         $staffs=null;
         if($request->has('q')){
             $param='%'.$request->input('q').'%';
-            $staffs=Staff::where('name','like',$param)
+            $staffs=Staff::where('first_name','like',$param)
+                ->orWhere('last_name','like',$param)
                 ->orWhere('email','like',$param)
                 ->orWhere('contact_no','like',$param)->get();
         }else{
@@ -39,7 +41,8 @@ class StaffController extends Controller
     public function create()
     {
         return view('staff.create',[
-            'page_title'=>'Add Staff'
+            'page_title'=>'Add Staff',
+            'stores'=>Store::where('status',true)->get()
         ]);
     }
 
@@ -64,6 +67,7 @@ class StaffController extends Controller
         $staff->photo=$photo;
         $staff->status=$request->has('status');
         $staff->save();
+        $staff->addToStore($staff->id,$request->input('store'));
         return redirect('/staffs');
     }
 

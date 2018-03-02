@@ -14,13 +14,19 @@
     </ul>
 </div>
 @endif
+{!!Form::open(['url'=>'suppliers','method'=>'POST','files'=>true])!!}
 <div class="box box-primary">
             <div class="box-header with-border">
               <h3 class="box-title"></h3>
+              <div class="pull-right">
+              <button type="submit" class="btn btn-primary">Save</button>
+                <a href="{{url('/suppliers')}}" class="btn btn-danger">Cancel</a>
+              </div>
+             
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            {!!Form::open(['url'=>'suppliers','method'=>'POST','files'=>true])!!}
+            
               <div class="box-body">
                 <div class="form-group">
                   <label for="name">Name</label>
@@ -57,6 +63,7 @@
                 <a href="{{url('/suppliers')}}" class="btn btn-danger">Cancel</a>
               </div>
               {{Form::token()}}
-            {{Form::close()}}
-          </div
+
+          </div>            
+  {{Form::close()}}
 @endsection
