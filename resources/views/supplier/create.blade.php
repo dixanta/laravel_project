@@ -19,8 +19,10 @@
             <div class="box-header with-border">
               <h3 class="box-title"></h3>
               <div class="pull-right">
-              <button type="submit" class="btn btn-primary">Save</button>
-                <a href="{{url('/suppliers')}}" class="btn btn-danger">Cancel</a>
+              <button type="submit" class="btn btn-primary">
+              <span class="glyphicon glyphicon-floppy-disk"></span> Save</button>
+                <a href="{{url('/suppliers')}}" class="btn btn-danger">
+                <span class="glyphicon glyphicon-remove"></span> Cancel</a>
               </div>
              
             </div>
