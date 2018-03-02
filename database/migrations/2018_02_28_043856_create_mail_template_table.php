@@ -13,9 +13,16 @@ class CreateMailTemplateTable extends Migration
      */
     public function up()
     {
-        Schema::create('mail_template', function (Blueprint $table) {
+        Schema::create('mst_mail_template', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamps();
+            $table->string('name');
+            $table->string('slug')->unique();
+            $table->string('subject');
+            $table->text('message');
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->nullable();
+            $table->boolean('delete_flag')->default(0);
+            $table->boolean('status')->default(0);
         });
     }
 
