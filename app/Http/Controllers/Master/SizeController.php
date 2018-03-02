@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Master;
 
 use App\Size;
+
 use App\Http\Requests\SizeFormRequest;
 use Illuminate\Http\Request;
 
-class SizeController extends Controller
+class SizeController extends \App\Http\Controllers\Controller
 {
     /**
      * Display a listing of the resource.

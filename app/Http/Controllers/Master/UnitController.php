@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Master;
 
 use App\Unit;
 use App\Http\Requests\UnitFormRequest;
 use Illuminate\Http\Request;
 
-class UnitController extends Controller
+class UnitController extends \App\Http\Controllers\Controller
 {
     /**
      * Display a listing of the resource.

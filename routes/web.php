@@ -20,9 +20,11 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/dashboard','DashboardController@index');
-Route::resource('/colors','ColorController');
-Route::resource('/sizes','SizeController');
-Route::resource('/units','UnitController');
+Route::resource('/colors','Master\ColorController');
+Route::resource('/sizes','Master\SizeController');
+Route::resource('/units','Master\UnitController');
+
+Route::resource('/brands','BrandController');
 Route::resource('/categories','CategoryController');
 
 Route::resource('/suppliers','SupplierController');

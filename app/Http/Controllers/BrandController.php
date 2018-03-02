@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Brand;
+use App\Http\Requests\BrandFormRequest;
 use Illuminate\Http\Request;
 
 class BrandController extends Controller
@@ -12,9 +13,21 @@ class BrandController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $brands=null;
+        if($request->has('q')){
+            $param='%'.$request->input('q').'%';
+            $brands=Brand::where('name','like',$param)
+                ->orWhere('description','like',$param)->get();
+        }else{
+            $brands=Brand::all();
+        }
+        
+        return view('brand.index',[
+            'page_title'=>'Brands',
+            'brands'=>$brands
+        ]);
     }
 
     /**
@@ -24,7 +37,9 @@ class BrandController extends Controller
      */
     public function create()
     {
-        //
+        return view('brand.create',[
+            'page_title'=>'Add Brand'
+        ]);
     }
 
     /**
@@ -33,9 +48,20 @@ class BrandController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(BrandFormRequest $request)
     {
-        //
+        $logo='na.jpg';
+        if($request->hasFile('logo')){
+            $logo=$request->file('logo')->store('public/brands');
+        }
+        $brand=new Brand();
+        $brand->name=$request->input('name');
+        $brand->description=$request->input('name');
+        $brand->logo=$logo;
+        $brand->parent_id=0;
+        $brand->status=$request->has('status');
+        $brand->save();
+        return redirect('/brands');
     }
 
     /**
@@ -55,9 +81,12 @@ class BrandController extends Controller
      * @param  \App\Brand  $brand
      * @return \Illuminate\Http\Response
      */
-    public function edit(Brand $brand)
+    public function edit($id)
     {
-        //
+        return view('brand.edit',[
+            'page_title'=>'Edit Brand',
+            'brand'=>Brand::findOrFail($id)
+        ]);
     }
 
     /**
@@ -69,7 +98,17 @@ class BrandController extends Controller
      */
     public function update(Request $request, Brand $brand)
     {
-        //
+        
+        if($request->hasFile('logo')){
+            $brand->logo=$request->file('logo')->store('public/brands');
+        }
+        
+        $brand->name=$request->input('name');
+        $brand->description=$request->input('name');
+        $brand->parent_id=0;
+        $brand->status=$request->has('status');
+        $brand->save();
+        return redirect('/brands');
     }
 
     /**
@@ -80,6 +119,8 @@ class BrandController extends Controller
      */
     public function destroy(Brand $brand)
     {
-        //
+        $brand->delete_flag=1;
+        $brand->save();
+        return redirect('/brands');
     }
 }

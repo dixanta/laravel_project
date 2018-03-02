@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('page_title','Sizes')
+@section('page_title','Brands')
 
 @section('content')
 
@@ -8,12 +8,12 @@
           <div class="box">
             <div class="box-header">
               <h3 class="box-title">
-                <a href="{{url('sizes/create')}}" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span></a>
-                <a href="{{url('sizes')}}" class="btn btn-danger">Clear</a>
+                <a href="{{url('brands/create')}}" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span></a>
+                <a href="{{url('brands')}}" class="btn btn-danger">Clear</a>
               </h3>
               
               <div class="box-tools">
-              {!!Form::open(['url'=>'sizes','method'=>'GET'])!!}
+              {!!Form::open(['url'=>'brands','method'=>'GET'])!!}
                 <div class="input-group input-group-sm" style="width: 150px;">
                     
                   <input type="text" name="q" class="form-control pull-right" placeholder="Search">
@@ -35,17 +35,17 @@
                 <tr>
                   <th>ID</th>
                   <th>Name</th>
-                  <th>Code</th>
+                  <th>Added Date</th>
                   <th>Status</th>
                   <th>Action</th>
                 </tr>
-                @foreach($sizes as $size)
+                @foreach($brands as $category)
                 <tr>
-                  <td>{{$size->id}}</td>
-                  <td>{{$size->name}}</td>
-                  <td>{{$size->code}}</td>
+                  <td>{{$category->id}}</td>
+                  <td>{{$category->name}}</td>
+                  <td>{{$category->created_at}}</td>
                   <td>
-                    @if($size->status)
+                    @if($category->status)
                     <span class="label label-success">Active</span>
                     @else
                     <span class="label label-danger">Inactive</span>
@@ -53,8 +53,8 @@
                   </td>
                   <td>
                     
-                    {!!Form::open(['url'=>'sizes/'.$size->id,'method'=>'DELETE'])!!}
-                    <a href="{{url('sizes/'.$size->id .'/edit')}}" class="btn btn-success"><span class="glyphicon glyphicon-pencil"></span></a>
+                    {!!Form::open(['url'=>'brands/'.$category->id,'method'=>'DELETE'])!!}
+                    <a href="{{url('brands/'.$category->id .'/edit')}}" class="btn btn-success"><span class="glyphicon glyphicon-pencil"></span></a>
                         <button type="submit" class="btn btn-danger">
                             <span class="glyphicon glyphicon-trash"/>
                         </button>
