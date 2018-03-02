@@ -30,5 +30,7 @@ Route::post('/units/status','Master\UnitController@changeStatus');
 Route::resource('/brands','BrandController');
 Route::resource('/categories','CategoryController');
 Route::post('/categories/status','CategoryController@changeStatus');
+Route::resource('/staffs','StaffController');
+Route::post('/staffs/status','StaffController@changeStatus');
 Route::resource('/stores','StoreController');
 Route::resource('/suppliers','SupplierController');

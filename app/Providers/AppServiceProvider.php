@@ -24,6 +24,10 @@ class AppServiceProvider extends ServiceProvider
             return !$model->status;
         });
 
+        Blade::directive('errorBlock',function($errors){
+            return view('partials.error')->render();
+        });
+
         
     }
 
