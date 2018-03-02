@@ -39,13 +39,13 @@
                   <th>Status</th>
                   <th>Action</th>
                 </tr>
-                @foreach($brands as $category)
+                @foreach($brands as $brand)
                 <tr>
-                  <td>{{$category->id}}</td>
-                  <td>{{$category->name}}</td>
-                  <td>{{$category->created_at}}</td>
+                  <td>{{$brand->id}}</td>
+                  <td>{{$brand->name}}</td>
+                  <td>{{$brand->created_at}}</td>
                   <td>
-                    @if($category->status)
+                    @if($brand->status)
                     <span class="label label-success">Active</span>
                     @else
                     <span class="label label-danger">Inactive</span>
@@ -53,8 +53,8 @@
                   </td>
                   <td>
                     
-                    {!!Form::open(['url'=>'brands/'.$category->id,'method'=>'DELETE'])!!}
-                    <a href="{{url('brands/'.$category->id .'/edit')}}" class="btn btn-success"><span class="glyphicon glyphicon-pencil"></span></a>
+                    {!!Form::open(['url'=>'brands/'.$brand->id,'method'=>'DELETE'])!!}
+                    <a href="{{url('brands/'.$brand->id .'/edit')}}" class="btn btn-success"><span class="glyphicon glyphicon-pencil"></span></a>
                         <button type="submit" class="btn btn-danger">
                             <span class="glyphicon glyphicon-trash"/>
                         </button>
