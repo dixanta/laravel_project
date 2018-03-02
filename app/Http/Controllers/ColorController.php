@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Color;
+use App\Http\Requests\ColorFormRequest;
 use Illuminate\Http\Request;
 
 class ColorController extends Controller
@@ -12,9 +13,21 @@ class ColorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $colors=null;
+        if($request->has('q')){
+            $param='%'.$request->input('q').'%';
+            $colors=Color::where('name','like',$param)
+                ->orWhere('code','like',$param)->get();
+        }else{
+            $colors=Color::all();
+        }
+        
+        return view('color.index',[
+            'page_title'=>'Color',
+            'colors'=>$colors
+        ]);
     }
 
     /**
@@ -24,7 +37,9 @@ class ColorController extends Controller
      */
     public function create()
     {
-        //
+        return view('color.create',[
+            'page_title'=>'Add Color'
+        ]);
     }
 
     /**
@@ -33,9 +48,14 @@ class ColorController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ColorFormRequest $request)
     {
-        //
+        $color=new Color();
+        $color->name=$request->input('name');
+        $color->code=$request->input('code');
+        $color->status=$request->has('status');
+        $color->save();
+        return redirect('/colors');
     }
 
     /**
@@ -55,9 +75,12 @@ class ColorController extends Controller
      * @param  \App\Color  $color
      * @return \Illuminate\Http\Response
      */
-    public function edit(Color $color)
+    public function edit($id)
     {
-        //
+        return view('color.edit',[
+            'page_title'=>'Edit Color',
+             'color'=>Color::findOrFail($id)
+        ]);
     }
 
     /**
@@ -67,9 +90,13 @@ class ColorController extends Controller
      * @param  \App\Color  $color
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Color $color)
+    public function update(ColorFormRequest $request, Color $color)
     {
-        //
+        $color->name=$request->input('name');
+        $color->code=$request->input('code');
+        $color->status=$request->has('status');
+        $color->save();
+        return redirect('/colors');
     }
 
     /**
@@ -80,6 +107,8 @@ class ColorController extends Controller
      */
     public function destroy(Color $color)
     {
-        //
+        $color->delete_flag=1;
+        $color->save();
+        return redirect('/colors');
     }
 }

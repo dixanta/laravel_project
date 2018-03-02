@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Unit;
+use App\Http\Requests\UnitFormRequest;
 use Illuminate\Http\Request;
 
 class UnitController extends Controller
@@ -12,9 +13,21 @@ class UnitController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $units=null;
+        if($request->has('q')){
+            $param='%'.$request->input('q').'%';
+            $units=Unit::where('name','like',$param)
+                ->orWhere('code','like',$param)->get();
+        }else{
+            $units=Unit::all();
+        }
+        
+        return view('unit.index',[
+            'page_title'=>'Unit',
+            'units'=>$units
+        ]);
     }
 
     /**
@@ -24,7 +37,9 @@ class UnitController extends Controller
      */
     public function create()
     {
-        //
+        return view('unit.create',[
+            'page_title'=>'Add Unit'
+        ]);
     }
 
     /**
@@ -33,9 +48,14 @@ class UnitController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UnitFormRequest $request)
     {
-        //
+        $unit=new Unit();
+        $unit->name=$request->input('name');
+        $unit->code=$request->input('code');
+        $unit->status=$request->has('status');
+        $unit->save();
+        return redirect('/units');
     }
 
     /**
@@ -55,9 +75,12 @@ class UnitController extends Controller
      * @param  \App\Unit  $unit
      * @return \Illuminate\Http\Response
      */
-    public function edit(Unit $unit)
+    public function edit($id)
     {
-        //
+        return view('unit.edit',[
+            'page_title'=>'Edit Unit',
+             'unit'=>Unit::findOrFail($id)
+        ]);
     }
 
     /**
@@ -67,9 +90,13 @@ class UnitController extends Controller
      * @param  \App\Unit  $unit
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Unit $unit)
+    public function update(UnitFormRequest $request, Unit $unit)
     {
-        //
+        $unit->name=$request->input('name');
+        $unit->code=$request->input('code');
+        $unit->status=$request->has('status');
+        $unit->save();
+        return redirect('/units');
     }
 
     /**
@@ -80,6 +107,8 @@ class UnitController extends Controller
      */
     public function destroy(Unit $unit)
     {
-        //
+        $unit->delete_flag=1;
+        $unit->save();
+        return redirect('/units');
     }
 }
