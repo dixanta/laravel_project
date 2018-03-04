@@ -15,7 +15,8 @@ class CreateItemFieldsTable extends Migration
     {
         Schema::create('item_fields', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamps();
+            $table->string('field_name');
+                        
         });
     }
 

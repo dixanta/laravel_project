@@ -35,3 +35,8 @@ Route::post('/staffs/status','StaffController@changeStatus');
 Route::resource('/stores','StoreController');
 Route::post('/stores/status','StoreController@changeStatus');
 Route::resource('/suppliers','SupplierController');
+
+Route::group(['prefix'=>'items'],function(){
+    Route::resource('/','ItemController');
+    Route::resource('/fields','ItemFieldController');
+});

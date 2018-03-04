@@ -45,6 +45,19 @@
             <li><a href="{{url('mailtemplates')}}"><i class="fa fa-circle-o"></i> Mail Templates</a></li>
           </ul>
         </li>
+
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-pie-chart"></i>
+            <span>Item/Stock</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{{url('items/fields')}}"><i class="fa fa-circle-o"></i> Fields</a></li>
+          </ul>
+        </li>
         
         <li class="treeview">
           <a href="#">
